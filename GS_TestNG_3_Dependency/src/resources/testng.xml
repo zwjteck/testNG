@@ -1,0 +1,14 @@
+<!-- @BeforeSuite -->
+<suite name="TestAll">
+
+    <!-- @BeforeTest -->
+    <test name="case1">
+        <classes>
+            <class name="TestApp" />
+            <class name="TestDatabase" />
+            <class name="TestServer" />
+        </classes>
+    </test>
+
+</suite>
+        <!-- @AfterSuite -->
