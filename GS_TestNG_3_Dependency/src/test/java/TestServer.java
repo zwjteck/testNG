@@ -1,3 +1,4 @@
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 /**
@@ -7,16 +8,27 @@ import org.testng.annotations.Test;
 //all methods of this class are belong to "deploy" group.
 @Test(groups="deploy")
 public class TestServer {
-
+    @DataProvider(name = "provideNumbers")
+    public Object[][] provideData() {
+        System.out.println("provideData belong deploy group");
+        return new Object[][] {
+                { 11, 20 },
+                { 100, 110 },
+                { 200, 210 }
+        };
+    }
+    public int num=0;
     @Test
     public void deployServer() {
-        System.out.println("Deploying Server...");
+        num++;
+        System.out.println("Deploying Server...,  num="+num);
     }
 
     //Run this if deployServer() is passed.
     @Test(dependsOnMethods="deployServer")
     public void deployBackUpServer() {
-        System.out.println("Deploying Backup Server...");
+        num++;
+        System.out.println("Deploying Backup Server...,  num="+num);
     }
 
 }

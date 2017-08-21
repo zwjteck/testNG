@@ -1,3 +1,4 @@
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 /**
@@ -11,9 +12,14 @@ public class TestApp {
         System.out.println("This is method 1");
         //throw new RuntimeException();
     }
+    @Test(dependsOnGroups={"deploy"},dataProvider = "provideNumbers")
+    public void testNum(int number, int expected) {
+        Assert.assertEquals(number + 10, expected);
+    }
+
 
     //Run if method1() is passed.
-    @Test(dependsOnMethods = { "method1" })
+    @Test(dependsOnMethods = { "method1","initDB" })
     public void method2() {
         System.out.println("This is method 2");
     }
